@@ -1,0 +1,58 @@
+/*Program of pre order , in order, post order traversal of binary tree*/
+#include <stdio.h>
+#include <stdlib.h>
+struct n
+{
+int x;
+struct n* left;
+struct n* right;
+};
+struct n* n1(int x)
+{
+struct n*n = (struct n*)
+malloc(sizeof(struct n));
+n->x = x;
+n->left = NULL;
+n->right = NULL;
+return(n);
+}
+void Postorder(struct n*n)
+{
+if (n == NULL)
+return;
+Postorder(n->left);
+Postorder(n->right);
+printf(“%d “, n->x);
+}
+void Inorder(struct n*n)
+{
+if (n == NULL)
+return;
+Inorder(n->left);
+printf(“%d “, n->x);
+Inorder(n->right);
+}
+void Preorder(struct n* n)
+{
+if (n == NULL)
+return;
+printf(“%d “, n->x);
+Preorder(n->left);
+Preorder(n->right);
+}
+int main()
+{
+struct n*root = n1(1);
+root->left = n1(2);
+root->right = n1(3);
+root->left->left = n1(4);
+root->left->right = n1(5);
+printf(“Preorder traversal on Binary Tree is :”);
+Preorder(root);
+printf(“Inorder traversal on Binary Tree is :”);
+Inorder(root);
+printf(“Postorder traversal on Binary Tree is :”);
+Postorder(root);
+getchar();
+return 0;
+}
